@@ -7,6 +7,7 @@ const loadMeals = (search) => {
 
 const displayMeals = meals => {
     const mealsContainer = document.getElementById('meal-container');
+    mealsContainer.innerHTML = '';
     meals.forEach(meal => {
         console.log(meal);
         const mealDiv = document.createElement('div');
@@ -21,9 +22,18 @@ const displayMeals = meals => {
          </div>
         `;
         mealsContainer.appendChild(mealDiv);
+        
 
 
     })
 }
 
-loadMeals('chicken');
+
+    const searchFood = () => {
+        const searchField = document.getElementById('search-field');
+        const searchText = searchField.value;
+        loadMeals(searchText);
+        searchField.value = '';
+    }
+
+// loadMeals('c');
