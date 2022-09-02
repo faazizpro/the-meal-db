@@ -9,11 +9,11 @@ const displayMeals = meals => {
     const mealsContainer = document.getElementById('meal-container');
     mealsContainer.innerHTML = '';
     meals.forEach(meal => {
-        console.log(meal);
+        // console.log(meal);
         const mealDiv = document.createElement('div');
         mealDiv.classList.add('col');
         mealDiv.innerHTML = `
-        <div class="card">
+        <div onclick="loadMealDetail(${meal.idMeal})" class="card">
             <img src="${meal.strMealThumb}" class="card-img-top w-75 rounded mx-auto d-block p-3" alt="...">
             <div class="card-body">
                 <h5 class="card-title fw-bold">${meal.strMeal}</h5>
@@ -23,11 +23,8 @@ const displayMeals = meals => {
         `;
         mealsContainer.appendChild(mealDiv);
         
-
-
     })
 }
-
 
     const searchFood = () => {
         const searchField = document.getElementById('search-field');
@@ -36,4 +33,19 @@ const displayMeals = meals => {
         searchField.value = '';
     }
 
-// loadMeals('c');
+
+    const loadMealDetail = (idMeal) =>{
+        // console.log('Get Detail', idMeal);
+        const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`
+        fetch(url)
+        .then(res => res.json())
+        .then(data => displayMealDetails(data.meals[0]));
+        // console.log(url);
+    }
+
+    const displayMealDetails = () => {
+        const detailContainer = document.getElementById('detail-container');
+        const mealDiv = document.createElement('div');
+        mealDiv.classList.add('card') 
+    }
+loadMeals('');
