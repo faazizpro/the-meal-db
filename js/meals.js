@@ -40,12 +40,23 @@ const displayMeals = meals => {
         fetch(url)
         .then(res => res.json())
         .then(data => displayMealDetails(data.meals[0]));
-        // console.log(url);
+        
     }
 
-    const displayMealDetails = () => {
+    const displayMealDetails = meal => {
         const detailContainer = document.getElementById('detail-container');
+        detailContainer.innerHTML = '';
         const mealDiv = document.createElement('div');
-        mealDiv.classList.add('card') 
+        mealDiv.classList.add('card') ;
+        mealDiv.innerHTML = `
+        <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${meal.strMeal}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+      </div>
+        `;
+        detailContainer.appendChild(mealDiv);
     }
 loadMeals('');
